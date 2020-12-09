@@ -3,7 +3,11 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"goTestProject/database"
+	"goTestProject/pkg/user"
 	"io/ioutil"
+	"log"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -20,15 +24,12 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Parse config file fail: %s", err.Error()))
 	}
-
-	port := viper.GetInt("webport")
+	port := viper.GetInt("port")
+	database.InitDatabase()
 	fmt.Println(port)
-	//content, err := ioutil.ReadFile(config)
-	//fmt.Println(content)
-	//fmt.Println(err)
-	//http.HandleFunc("/write", user.Write)
-	//err := http.ListenAndServe(port, nil)
-	//if (err) != nil {
-	//	log.Fatal("ListenAndServe: ", err)
-	//}
+	http.HandleFunc("/write", user.Write)
+	err = http.ListenAndServe(":8088", nil)
+	if (err) != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
