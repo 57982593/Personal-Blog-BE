@@ -1,4 +1,3 @@
-port: 8088
 isDevelopment: true
 database:
   mysql:

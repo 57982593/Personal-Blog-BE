@@ -31,6 +31,3 @@ func InitDatabase() {
 	}
 }
 
-func GetDb() *gorm.DB {
-	return db
-}
