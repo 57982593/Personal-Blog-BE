@@ -14,7 +14,6 @@ func Write(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("X-Custom-Header", "custom")
 	w.WriteHeader(201)
-
 	user := &User{
 		Name:   "wang",
 		Habits: []string{"balls", "running", "hiking"},

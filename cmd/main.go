@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	config := "./config/admin-local.yaml"
+	config := "D:/goTestProject/config/admin-local.yaml"
 	viper.SetConfigFile(config)
 	content, err := ioutil.ReadFile(config)
 	if err != nil {
@@ -27,6 +27,7 @@ func main() {
 	database.InitDatabase()
 	fmt.Println("Service started Successfully!")
 	http.HandleFunc("/write", user.Write)
+	http.HandleFunc("/menuList",user.GetMenuList)
 	err = http.ListenAndServe(":8088", nil)
 	if (err) != nil {
 		log.Fatal("ListenAndServe: ", err)

@@ -12,6 +12,7 @@ var db *gorm.DB
 var NotFoundErr = gorm.ErrRecordNotFound
 
 func InitDatabase() {
+	var err error
 	host := viper.Get("database.mysql.host")
 	user := viper.Get("database.mysql.user")
 	password := viper.GetString("database.mysql.password")
@@ -19,7 +20,7 @@ func InitDatabase() {
 	charset := viper.GetString("database.mysql.charset")
 	isDevelopment := viper.GetBool("isDevelopment")
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local", user, password, host, name, charset)
-	db, err := gorm.Open("mysql", dsn)
+	db, err = gorm.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(fmt.Sprintf("Failed to connect mysql %s", err.Error()))
 	} else {
@@ -29,5 +30,9 @@ func InitDatabase() {
 			db.LogMode(true)
 		}
 	}
+}
+
+func GetDb() *gorm.DB {
+	return db
 }
 
