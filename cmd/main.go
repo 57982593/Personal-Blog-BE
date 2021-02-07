@@ -19,15 +19,14 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Read config file fail: %s", err.Error()))
 	}
-	// Replace environment variables
 	err = viper.ReadConfig(strings.NewReader(os.ExpandEnv(string(content))))
 	if err != nil {
 		panic(fmt.Sprintf("Parse config file fail: %s", err.Error()))
 	}
 	database.InitDatabase()
 	fmt.Println("Service started Successfully!")
-	http.HandleFunc("/write", user.Write)
 	http.HandleFunc("/menuList",user.GetMenuList)
+	http.HandleFunc("/getRoute",user.GetRoute)
 	err = http.ListenAndServe(":8088", nil)
 	if (err) != nil {
 		log.Fatal("ListenAndServe: ", err)
