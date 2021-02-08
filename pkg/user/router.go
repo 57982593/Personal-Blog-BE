@@ -23,7 +23,7 @@ func GetRoute(w http.ResponseWriter,r *http.Request) {
 	db := database.GetDb()
 	//data := r.URL.Query()
 	//fmt.Println(data.Get("id"), db)
-	routers := Router{}
+	var routers []Router
 	route := db.Find(&routers)
 	fmt.Printf("%#v",route)
 	json,_:= json2.Marshal(route)

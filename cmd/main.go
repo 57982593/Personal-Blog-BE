@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"goTestProject/init"
+	"goTestProject/pkg/test"
 	"goTestProject/pkg/user"
 	"io/ioutil"
 	"log"
@@ -27,6 +28,8 @@ func main() {
 	fmt.Println("Service started Successfully!")
 	http.HandleFunc("/menuList",user.GetMenuList)
 	http.HandleFunc("/getRoute",user.GetRoute)
+	http.HandleFunc("/createTable", test.CreateTable)
+	http.HandleFunc("/selectAll", test.SelectAll)
 	err = http.ListenAndServe(":8088", nil)
 	if (err) != nil {
 		log.Fatal("ListenAndServe: ", err)
