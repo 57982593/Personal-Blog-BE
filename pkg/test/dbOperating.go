@@ -5,6 +5,7 @@ import (
 	"fmt"
 	database "goTestProject/init"
 	"net/http"
+	"strconv"
 )
 
 type Router struct {
@@ -40,5 +41,14 @@ func SelectAll(w http.ResponseWriter,r *http.Request) {
 	if err!=nil {
 		fmt.Println("出错了")
 	}
+	w.Write(json)
+}
+func EachInsert(w http.ResponseWriter,r *http.Request)  {
+	for i:=0; i<=10;i+=1 {
+		db := database.GetDb()
+		router := Router{Route: "test" + strconv.Itoa(i)}
+		db.Create(&router)
+	}
+	json,_ := json2.Marshal("循环插入成功")
 	w.Write(json)
 }
