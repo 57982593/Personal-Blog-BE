@@ -45,7 +45,6 @@ func EachInsert(w http.ResponseWriter,r *http.Request) {
 	}
 	json,_:= json2.Marshal("插入成功")
 	w.Write(json)
-	
 }
 
 func SelectAll(w http.ResponseWriter,r *http.Request) {
