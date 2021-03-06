@@ -6,7 +6,6 @@ import (
 	database "goTestProject/init"
 	"strconv"
 	"net/http"
-	"strconv"
 )
 
 type Router struct {

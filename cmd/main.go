@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	config := "D:/goTestProject/config/admin-local.yaml"
+	config := "../goTestProject/config/admin-local.yaml"
 	viper.SetConfigFile(config)
 	content, err := ioutil.ReadFile(config)
 	if err != nil {
