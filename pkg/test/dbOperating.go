@@ -4,6 +4,7 @@ import (
 	json2 "encoding/json"
 	"fmt"
 	database "goTestProject/init"
+	"strconv"
 	"net/http"
 )
 
@@ -29,6 +30,24 @@ func CreateTable(w http.ResponseWriter,r *http.Request) {
 	json,_:= json2.Marshal("插入成功")
 	w.Write(json)
 }
+
+func EachInsert(w http.ResponseWriter,r *http.Request) {
+	db := database.GetDb()
+	for i := 0; i < 10; i++ {
+		num := strconv.Itoa(i)
+		route := Router{Route:"测试"+num}
+		err := db.Create(&route)
+		if err.Error!=nil {
+			fmt.Println(route)
+			fmt.Println(err)
+			panic("err")
+		}
+	}
+	json,_:= json2.Marshal("插入成功")
+	w.Write(json)
+	
+}
+
 func SelectAll(w http.ResponseWriter,r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//w.Header().Set("X-Custom-Header", "custom")
