@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/spf13/viper"
 	database "goTestProject/init"
 	"goTestProject/pkg/test"
 	"goTestProject/pkg/user"
@@ -10,8 +11,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"time"
-	"github.com/spf13/viper"
 )
 
 func main() {
@@ -32,11 +31,17 @@ func main() {
 	http.HandleFunc("/createTable", test.CreateTable)
 	http.HandleFunc("/eachInsert",test.EachInsert)
 	http.HandleFunc("/selectAll", test.SelectAll)
+	http.HandleFunc("/socket", test.Websocket)
+
+	err = http.ListenAndServe(":8088", nil)
+	if (err) != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 	//并发测试 需要将 go say("并发") 放在 say("测试") 前面，否则会变成顺序执行，具体原因未知
 	// go say("并发")
 	// say("测试")
 
-	//并发进程间通信 ch <- c 把c 发送至通道 
+	/*//并发进程间通信 ch <- c 把c 发送至通道
 	//c := <-ch 接收通道消息，并赋值给c 语言
 	s := []int{7, 2, 8, -9, 4, 0}
 	//声明通道
@@ -45,15 +50,10 @@ func main() {
     go sum(s[len(s)/2:], c)//从len(s)/2 处到数组结尾
     x, y := <-c, <-c // 从通道 c 中接收
 
-    fmt.Println(x, y, x+y)
-
-	err = http.ListenAndServe(":8088", nil)
-	if (err) != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+    fmt.Println(x, y, x+y)*/
 }
 
-func sum(s []int, c chan int) {
+/*func sum(s []int, c chan int) {
 	sum := 0
 	for _, v := range s {
 			fmt.Println("测试%d/n",v)
@@ -66,4 +66,4 @@ func say(s string) {	for i := 0; i < 5; i++ {
 			time.Sleep(100 * time.Millisecond)
 			fmt.Println(s)
 	}
-}
+}*/
