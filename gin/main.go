@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -24,6 +25,28 @@ func main() {
 		message := name + " is " + action
 		c.String(http.StatusOK, message)
 	})
+	// Query string parameters are parsed using the existing underlying request object.
+	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// 在url后携带参数
+	router.GET("/welcome", func(c *gin.Context) {
+		firstname := c.DefaultQuery("firstname", "Guest") //接受请求参数没有时设置默认值
+		// 仅接受参数，但不设置默认值
+		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
 
-	router.Run(":8080")
+		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
+	})
+
+	router.POST("/form_post", func(c *gin.Context) {
+		//fmt.Printf("%+v\n", c)
+		message := c.PostForm("message")
+		nick := c.DefaultPostForm("nick", "anonymous")
+		fmt.Println(c.Query("message"))
+		c.JSON(200, gin.H{
+			"status":  "posted",
+			"message": message,
+			"nick":    nick,
+		})
+	})
+
+	router.Run(":8083")
 }
