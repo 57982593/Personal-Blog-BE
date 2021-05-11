@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "/root";
+
+package root;
+
+// 用户信息
+message User {
+  int64 id = 1;
+  // QQ/微信服务返回给我们的唯一标识
+  string account = 2;
+  // 登录方法：“qq” or "wx"
+  string way = 3;
+  string name = 4;
+  string email = 5;
+  string phone = 6;
+  int64  is_notify = 7; // 1=通知 2=不通知
+  int64  create_at = 8;
+  int64  update_at = 9;
+  int64  last_login_at = 10;
+}
+
+service Root {
+  rpc getUser (getUserRequest) returns (getUserReply) {}
+  rpc getUserList (getUserListRequest) returns (getUserListReply) {}
+}
+message getUserRequest {
+  int64 id = 1;
+}
+message getUserReply {
+  User user = 1;
+}
+message getUserListRequest {
+  int64 offset = 1;
+  int64 limit = 2;
+}
+message getUserListReply {
+  repeated User users = 1;
+  int64 total = 2;
+}
