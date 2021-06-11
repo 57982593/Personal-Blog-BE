@@ -12,6 +12,7 @@ yarn-error.log*
 .idea
 
 .vscode
+*.exe
 *.suo
 *.ntvs*
 *.njsproj
