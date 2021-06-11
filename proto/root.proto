@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "/root";
+option go_package = "./proto";
 
 package root;
 
@@ -23,6 +23,7 @@ message User {
 service Root {
   rpc getUser (getUserRequest) returns (getUserReply) {}
   rpc getUserList (getUserListRequest) returns (getUserListReply) {}
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 message getUserRequest {
   int64 id = 1;
@@ -37,4 +38,10 @@ message getUserListRequest {
 message getUserListReply {
   repeated User users = 1;
   int64 total = 2;
+}
+message HelloRequest {
+  string name = 1;
+}
+message HelloReply {
+  string message = 1;
 }
