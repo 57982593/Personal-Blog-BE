@@ -7,6 +7,7 @@ import (
 	"goTestProject/grpc/controller"
 	"goTestProject/proto"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"io/ioutil"
 	"log"
 	"net"
@@ -33,6 +34,7 @@ func main() {
 	fmt.Println("Service started Successfully!")
 	s := grpc.NewServer()
 	proto.RegisterRootServer(s, &controller.Server{})
+	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
