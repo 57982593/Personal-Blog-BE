@@ -36,7 +36,6 @@ func main() {
 	}
 	database.InitDatabase()
 	port := viper.Get("port")
-	fmt.Println(port)
 	fmt.Println("Service started Successfully!")
 	s := grpc.NewServer()
 	proto.RegisterRootServer(s, &controller.Server{})
