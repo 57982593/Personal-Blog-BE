@@ -1,12 +1,9 @@
 package service
 
 import (
-	"fmt"
 	database "goTestProject/init"
 )
 
-type UserService struct {
-}
 
 type User struct {
 	Id               int64
@@ -24,11 +21,7 @@ type User struct {
 func (User) TableName() string {
 	return "user"
 }
-func (u UserService) Get(id int64) *User {
-	user := &User{}
+func (u *User) GetUserInfo(id int64) error {
 	db := database.GetDb()
-	if err := db.Where("id = ?", id).First(user).Error; err != nil {
-		fmt.Println("查询出错了")
-	}
-	return user
+	return db.Where("id = ?", id).First(u).Error
 }

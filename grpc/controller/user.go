@@ -2,8 +2,10 @@ package controller
 
 import (
 	"context"
+	"fmt"
 	"goTestProject/grpc/service"
 	"goTestProject/proto"
+
 )
 
 type Server struct {
@@ -15,7 +17,11 @@ func (s *Server) SayHello(ctx context.Context, in *proto.HelloRequest) (*proto.H
 }
 
 func (s *Server)GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error)  {
-	user := ctx.Value("user").(*service.User)
+	userId := in.GetId()
+	user := &service.User{}
+	if err := user.GetUserInfo(userId); err != nil {
+		return nil, fmt.Errorf("get user error")
+	}
 	userInfo := proto.User{
 		Id:          user.Id,
 		Account:     user.Account,
