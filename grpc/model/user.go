@@ -22,6 +22,7 @@ type User struct {
 func (User) TableName() string {
 	return "user"
 }
+
 func Get(id int64) *User {
 	user := &User{}
 	db := database.GetDb()
@@ -39,3 +40,8 @@ func GetUserList() *[]User {
 	}
 	return userList
 }
+
+// func (u *User) GetUserInfo(id int64) error {
+// 	db := database.GetDb()
+// 	return db.Where("id = ?", id).First(u).Error
+// }
