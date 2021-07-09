@@ -3,27 +3,25 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/spf13/viper"
 	"goTestProject/grpc/controller"
 	database "goTestProject/init"
 	"goTestProject/proto"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/spf13/viper"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	//lis, err := net.Listen("tcp", ":9060")
-	//if err != nil {
-	//	log.Fatalf("failed to listen: %v", err)
-	//}
-	config := "./config/admin-local.yaml"
+
+	config := "../config/admin-local.yaml"
 	viper.SetConfigFile(config)
 
 	content, err := ioutil.ReadFile(config)
@@ -36,7 +34,6 @@ func main() {
 	}
 	database.InitDatabase()
 	port := viper.Get("port")
-	fmt.Println(port)
 	fmt.Println("Service started Successfully!")
 	s := grpc.NewServer()
 	proto.RegisterRootServer(s, &controller.Server{})
@@ -76,8 +73,4 @@ func main() {
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatal(fmt.Sprintf("srv.ListenAndServe failed to serve: %v", err))
 	}
-	//if err := s.Serve(lis); err != nil {
-	//	log.Fatalf("s.Serve failed to serve: %v", err)
-	//}
 }
-

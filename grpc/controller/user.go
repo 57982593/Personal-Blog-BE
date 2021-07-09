@@ -2,7 +2,7 @@ package controller
 
 import (
 	"context"
-	"goTestProject/grpc/service"
+	"goTestProject/grpc/model"
 	"goTestProject/proto"
 )
 
@@ -14,8 +14,8 @@ func (s *Server) SayHello(ctx context.Context, in *proto.HelloRequest) (*proto.H
 	return &proto.HelloReply{Message: "hello " + in.Name}, nil
 }
 
-func (s *Server)GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error)  {
-	user := ctx.Value("user").(*service.User)
+func (s *Server) GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error) {
+	user := model.Get(15)
 	userInfo := proto.User{
 		Id:          user.Id,
 		Account:     user.Account,
@@ -30,5 +30,7 @@ func (s *Server)GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.G
 	}
 	return &proto.GetUserReply{User: &userInfo}, nil
 }
-
-
+func (s *Server) GetUserList(ctx context.Context, in *proto.GetUserListRequest) (*proto.GetUserListReply, error) {
+	users := model.GetUserList()
+	return &proto.GetUserListReply{Users: users}, nil
+}
