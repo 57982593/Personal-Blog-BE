@@ -3,6 +3,8 @@ package controller
 import (
 	"context"
 	"goTestProject/grpc/model"
+	"encoding/json"
+	"fmt"
 	"goTestProject/proto"
 )
 
@@ -10,37 +12,30 @@ type Server struct {
 	proto.UnimplementedRootServer
 }
 
-func (s *Server) SayHello(ctx context.Context, in *proto.HelloRequest) (*proto.HelloReply, error) {
-	return &proto.HelloReply{Message: "hello " + in.Name}, nil
-}
-
-func (s *Server) GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error) {
-	user := model.Get(15)
-	// func (s *Server) GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error) {
-	// 	userId := in.GetId()
-	// 	user := &service.User{}
-	// 	if err := user.GetUserInfo(userId); err != nil {
-	// 		return nil, fmt.Errorf("get user error")
-	// 	}
-	userInfo := proto.User{
-		Id:          user.Id,
-		Account:     user.Account,
-		Way:         user.Way,
-		Name:        user.Name,
-		Email:       user.Email,
-		Phone:       user.Phone,
-		IsNotify:    user.IsNotify,
-		CreateAt:    user.CreateAt,
-		UpdateAt:    user.UpdateAt,
-		LastLoginAt: user.LastLoginAt,
+func (s *Server)GetUser(ctx context.Context, in *proto.GetUserRequest) (*proto.GetUserReply, error)  {
+	userId := in.GetId()
+	user := &model.User{}
+	if err := user.GetUserInfo(userId); err != nil {
+		return nil, fmt.Errorf("get user error")
 	}
-	return &proto.GetUserReply{User: &userInfo}, nil
+	jsonStr, err := json.Marshal(user)
+	if err != nil {
+		fmt.Println("转换失败", err)
+	}
+	str := string(jsonStr)
+
+	return &proto.GetUserReply{User: str}, nil
+}
+func (s *Server) GetUserList(ctx context.Context, in *proto.GetUserListRequest)(*proto.GetUserListReply, error) {
+	offset := in.GetOffset()
+	limit := in.GetLimit()
+	user := &model.User{}
+	userList, total := user.GetUserList(offset, limit)
+	jsonStr, err := json.Marshal(userList)
+	if err != nil {
+		fmt.Println("转换失败", err)
+	}
+	str := string(jsonStr)
+	return &proto.GetUserListReply{UserList: str, Total: total}, nil
 }
 
-// func (s *Server) GetUserList(ctx context.Context, in *proto.GetUserListRequest) (*proto.GetUserListReply, error) {
-// 	users := model.GetUserList()
-// 	for i, x := range users {
-
-// 	}
-// 	return &proto.GetUserListReply{Users: users}, nil
-// }

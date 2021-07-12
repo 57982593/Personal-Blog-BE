@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	database "goTestProject/init"
 )
 
@@ -23,25 +22,16 @@ func (User) TableName() string {
 	return "user"
 }
 
-func Get(id int64) *User {
-	user := &User{}
+func (u *User) GetUserInfo(id int64) error {
 	db := database.GetDb()
-	if err := db.Where("id = ?", id).First(user).Error; err != nil {
-		fmt.Println("查询出错了")
-	}
-	return user
-}
-func GetUserList() *[]User {
-	userList := &[]User{}
-	db := database.GetDb()
-	err := db.Find(userList)
-	if err != nil {
-		fmt.Println("查询出错")
-	}
-	return userList
+	return db.Where("id = ?", id).First(u).Error
 }
 
-// func (u *User) GetUserInfo(id int64) error {
-// 	db := database.GetDb()
-// 	return db.Where("id = ?", id).First(u).Error
-// }
+func (u User) GetUserList(offset, limit int64) ([]User, int64) {
+	db := database.GetDb()
+	var total int64
+	var users []User
+	db.Model(&User{}).Count(&total)
+	db.Offset(offset).Limit(limit).Find(&users)
+	return users, total
+}

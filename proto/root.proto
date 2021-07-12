@@ -23,25 +23,18 @@ message User {
 service Root {
   rpc getUser (getUserRequest) returns (getUserReply) {}
   rpc getUserList (getUserListRequest) returns (getUserListReply) {}
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 message getUserRequest {
   int64 id = 1;
 }
 message getUserReply {
-  User user = 1;
+  string user = 1;
 }
 message getUserListRequest {
   int64 offset = 1;
   int64 limit = 2;
 }
 message getUserListReply {
-  repeated User users = 1;
+  string userList = 1;
   int64 total = 2;
-}
-message HelloRequest {
-  string name = 1;
-}
-message HelloReply {
-  string message = 1;
 }
