@@ -39,3 +39,12 @@ func (s *Server) GetUserList(ctx context.Context, in *proto.GetUserListRequest)(
 	return &proto.GetUserListReply{UserList: str, Total: total}, nil
 }
 
+func (s *Server)DeleteUser(ctx context.Context, in *proto.DeleteUserRequest)(*proto.DeleteUserRespond, error)  {
+	userId := in.GetUserId()
+	err := model.DeleteUserInfo(userId)
+	if err != nil {
+		return nil, err
+	}
+	return &proto.DeleteUserRespond{Msg: "delete success"},nil
+}
+

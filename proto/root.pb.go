@@ -350,6 +350,100 @@ func (x *GetUserListReply) GetTotal() int64 {
 	return 0
 }
 
+type DeleteUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *DeleteUserRequest) Reset() {
+	*x = DeleteUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_root_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteUserRequest) ProtoMessage() {}
+
+func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_root_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
+func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
+	return file_root_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteUserRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type DeleteUserRespond struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+}
+
+func (x *DeleteUserRespond) Reset() {
+	*x = DeleteUserRespond{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_root_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteUserRespond) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteUserRespond) ProtoMessage() {}
+
+func (x *DeleteUserRespond) ProtoReflect() protoreflect.Message {
+	mi := &file_root_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteUserRespond.ProtoReflect.Descriptor instead.
+func (*DeleteUserRespond) Descriptor() ([]byte, []int) {
+	return file_root_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteUserRespond) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
 var File_root_proto protoreflect.FileDescriptor
 
 var file_root_proto_rawDesc = []byte{
@@ -383,16 +477,25 @@ var file_root_proto_rawDesc = []byte{
 	0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
 	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f, 0x74,
-	0x61, 0x6c, 0x32, 0x80, 0x01, 0x0a, 0x04, 0x52, 0x6f, 0x6f, 0x74, 0x12, 0x35, 0x0a, 0x07, 0x67,
-	0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x14, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65,
-	0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x72,
-	0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
-	0x22, 0x00, 0x12, 0x41, 0x0a, 0x0b, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73,
-	0x74, 0x12, 0x18, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72,
-	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x72, 0x6f,
-	0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x70, 0x6c, 0x79, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6c, 0x22, 0x2c, 0x0a, 0x11, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
+	0x22, 0x25, 0x0a, 0x11, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x32, 0xc2, 0x01, 0x0a, 0x04, 0x52, 0x6f, 0x6f, 0x74,
+	0x12, 0x35, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x14, 0x2e, 0x72, 0x6f,
+	0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x12, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x0b, 0x67, 0x65, 0x74, 0x55, 0x73,
+	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x18, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65,
+	0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x16, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x40, 0x0a, 0x0a, 0x64, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x17, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x17, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x64, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07,
+	0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -407,21 +510,25 @@ func file_root_proto_rawDescGZIP() []byte {
 	return file_root_proto_rawDescData
 }
 
-var file_root_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_root_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_root_proto_goTypes = []interface{}{
 	(*User)(nil),               // 0: root.User
 	(*GetUserRequest)(nil),     // 1: root.getUserRequest
 	(*GetUserReply)(nil),       // 2: root.getUserReply
 	(*GetUserListRequest)(nil), // 3: root.getUserListRequest
 	(*GetUserListReply)(nil),   // 4: root.getUserListReply
+	(*DeleteUserRequest)(nil),  // 5: root.deleteUserRequest
+	(*DeleteUserRespond)(nil),  // 6: root.deleteUserRespond
 }
 var file_root_proto_depIdxs = []int32{
 	1, // 0: root.Root.getUser:input_type -> root.getUserRequest
 	3, // 1: root.Root.getUserList:input_type -> root.getUserListRequest
-	2, // 2: root.Root.getUser:output_type -> root.getUserReply
-	4, // 3: root.Root.getUserList:output_type -> root.getUserListReply
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	5, // 2: root.Root.deleteUser:input_type -> root.deleteUserRequest
+	2, // 3: root.Root.getUser:output_type -> root.getUserReply
+	4, // 4: root.Root.getUserList:output_type -> root.getUserListReply
+	6, // 5: root.Root.deleteUser:output_type -> root.deleteUserRespond
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -493,6 +600,30 @@ func file_root_proto_init() {
 				return nil
 			}
 		}
+		file_root_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_root_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteUserRespond); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -500,7 +631,7 @@ func file_root_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_root_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -528,6 +659,7 @@ const _ = grpc.SupportPackageIsVersion6
 type RootClient interface {
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserReply, error)
 	GetUserList(ctx context.Context, in *GetUserListRequest, opts ...grpc.CallOption) (*GetUserListReply, error)
+	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserRespond, error)
 }
 
 type rootClient struct {
@@ -556,10 +688,20 @@ func (c *rootClient) GetUserList(ctx context.Context, in *GetUserListRequest, op
 	return out, nil
 }
 
+func (c *rootClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserRespond, error) {
+	out := new(DeleteUserRespond)
+	err := c.cc.Invoke(ctx, "/root.Root/deleteUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RootServer is the server API for Root service.
 type RootServer interface {
 	GetUser(context.Context, *GetUserRequest) (*GetUserReply, error)
 	GetUserList(context.Context, *GetUserListRequest) (*GetUserListReply, error)
+	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserRespond, error)
 }
 
 // UnimplementedRootServer can be embedded to have forward compatible implementations.
@@ -571,6 +713,9 @@ func (*UnimplementedRootServer) GetUser(context.Context, *GetUserRequest) (*GetU
 }
 func (*UnimplementedRootServer) GetUserList(context.Context, *GetUserListRequest) (*GetUserListReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserList not implemented")
+}
+func (*UnimplementedRootServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
 
 func RegisterRootServer(s *grpc.Server, srv RootServer) {
@@ -613,6 +758,24 @@ func _Root_GetUserList_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Root_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RootServer).DeleteUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/root.Root/DeleteUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RootServer).DeleteUser(ctx, req.(*DeleteUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Root_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "root.Root",
 	HandlerType: (*RootServer)(nil),
@@ -624,6 +787,10 @@ var _Root_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getUserList",
 			Handler:    _Root_GetUserList_Handler,
+		},
+		{
+			MethodName: "deleteUser",
+			Handler:    _Root_DeleteUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

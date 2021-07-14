@@ -23,6 +23,7 @@ message User {
 service Root {
   rpc getUser (getUserRequest) returns (getUserReply) {}
   rpc getUserList (getUserListRequest) returns (getUserListReply) {}
+  rpc deleteUser (deleteUserRequest) returns (deleteUserRespond) {}
 }
 message getUserRequest {
   int64 id = 1;
@@ -37,4 +38,10 @@ message getUserListRequest {
 message getUserListReply {
   string userList = 1;
   int64 total = 2;
+}
+message deleteUserRequest {
+  int64 user_id = 1;
+}
+message deleteUserRespond {
+  string msg = 1;
 }

@@ -35,3 +35,7 @@ func (u User) GetUserList(offset, limit int64) ([]User, int64) {
 	db.Offset(offset).Limit(limit).Find(&users)
 	return users, total
 }
+func DeleteUserInfo(userId int64) error {
+	db := database.GetDb()
+	return db.Delete(&User{}, userId).Error
+}
