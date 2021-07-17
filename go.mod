@@ -12,7 +12,7 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/rs/cors v1.7.0 // indirect
+	github.com/rs/cors v1.8.0 // indirect
 	github.com/spf13/viper v1.7.1
 	github.com/ugorji/go v1.2.5 // indirect
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect

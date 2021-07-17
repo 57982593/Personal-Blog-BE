@@ -2,18 +2,27 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"goTestProject/gin/model"
+	database "goTestProject/init"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/rs/cors"
 )
 
 func main() {
+	database.InitDatabase()
 	router := gin.Default()
-
+	router.Use(cors.Default())
 	// This handler will match /user/john but will not match /user/ or /user
 	// 这里可以使用 /user/自定义路由名称 来访问， c.Param 会接收到自定义得路由名称。
-	router.GET("/user/:name", func(c *gin.Context) {
-		name := c.Param("name")
-		c.String(http.StatusOK, "Hello %s", name)
+	router.GET("/getUserList", func(c *gin.Context) {
+		users := model.GetUserList()
+		c.JSON(http.StatusOK, gin.H{
+			"message": "ok",
+			"code":    200,
+			"data":    users,
+		})
 	})
 
 	// However, this one will match /user/john/ and also /user/john/send
