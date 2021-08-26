@@ -20,7 +20,6 @@ import (
 )
 
 func main() {
-
 	config := "./config/admin-local.yaml"
 	viper.SetConfigFile(config)
 
