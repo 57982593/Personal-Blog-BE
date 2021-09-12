@@ -1,7 +1,7 @@
 package model
 
 import (
-	database "goTestProject/init"
+	database "goTestProject/initialization"
 )
 
 type User struct {

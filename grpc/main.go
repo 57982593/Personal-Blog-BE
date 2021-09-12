@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"goTestProject/grpc/controller"
-	database "goTestProject/init"
+	database "goTestProject/initialization"
 	"goTestProject/proto"
 	"io/ioutil"
 	"log"
@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-	config := "./config/admin-local.yaml"
+	config := "./config/dev.yaml"
 	viper.SetConfigFile(config)
 
 	content, err := ioutil.ReadFile(config)

@@ -1,4 +1,4 @@
-package database
+package initialization
 
 import (
 	"fmt"
@@ -8,31 +8,31 @@ import (
 	"log"
 )
 
-var db *gorm.DB
-var NotFoundErr = gorm.ErrRecordNotFound
+var Db *gorm.DB
 
-func InitDatabase() {
+func Mysql() {
 	var err error
 	host := viper.Get("database.mysql.host")
+	fmt.Println(host)
 	user := viper.Get("database.mysql.user")
 	password := viper.GetString("database.mysql.password")
 	name := viper.GetString("database.mysql.name")
 	charset := viper.GetString("database.mysql.charset")
 	isDevelopment := viper.GetBool("isDevelopment")
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local", user, password, host, name, charset)
-	db, err = gorm.Open("mysql", dsn)
+	Db, err = gorm.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(fmt.Sprintf("Failed to connect mysql %s", err.Error()))
 	} else {
-		db.DB().SetMaxIdleConns(viper.GetInt("database.mysql.pool.min"))
-		db.DB().SetMaxOpenConns(viper.GetInt("database.mysql.pool.max"))
+		Db.DB().SetMaxIdleConns(viper.GetInt("database.mysql.pool.min"))
+		Db.DB().SetMaxOpenConns(viper.GetInt("database.mysql.pool.max"))
 		if isDevelopment {
-			db.LogMode(true)
+			Db.LogMode(true)
 		}
 	}
 }
 
 func GetDb() *gorm.DB {
-	return db
+	return Db
 }
 

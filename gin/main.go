@@ -2,17 +2,32 @@ package main
 
 import (
 	"fmt"
-	"goTestProject/gin/model"
-	database "goTestProject/init"
+	"github.com/spf13/viper"
+	"goTestProject/gin/data"
+	"goTestProject/initialization"
+	"io/ioutil"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	database.InitDatabase()
+	configFilePath := "./dev.yaml"
+	viper.SetConfigFile(configFilePath)
+	content, err := ioutil.ReadFile(configFilePath)
+	if err != nil {
+		panic(fmt.Sprintf("Read config file fail: %s", err.Error()))
+	}
+	err = viper.ReadConfig(strings.NewReader(os.ExpandEnv(string(content))))
+	if err != nil {
+		panic(fmt.Sprintf("Parse config file fail: %s", err.Error()))
+	}
+	port := fmt.Sprint(":",viper.Get("port"))
+	initialization.Mysql()
 	router := gin.Default()
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
@@ -29,7 +44,8 @@ func main() {
 	// This handler will match /user/john but will not match /user/ or /user
 	// 这里可以使用 /user/自定义路由名称 来访问， c.Param 会接收到自定义得路由名称。
 	router.GET("/getUserList", func(c *gin.Context) {
-		users := model.GetUserList()
+		fmt.Println("data.Test",data.Test)
+		users := data.GetUserList()
 		c.JSON(http.StatusOK, gin.H{
 			"message": "ok",
 			"code":    200,
@@ -69,5 +85,5 @@ func main() {
 		})
 	})
 
-	router.Run(":8083")
+	router.Run(port)
 }

@@ -1,8 +1,8 @@
-package model
+package data
 
 import (
 	"fmt"
-	database "goTestProject/init"
+	database "goTestProject/initialization"
 )
 
 type User struct {
@@ -19,11 +19,14 @@ type User struct {
 	LastLoginAt      int64
 }
 
+var Test = 1
+
 func (User) TableName() string {
 	return "user"
 }
 
 func Get(id int64) *User {
+	fmt.Print(Test)
 	user := &User{}
 	db := database.GetDb()
 	if err := db.Where("id = ?", id).First(user).Error; err != nil {
@@ -32,10 +35,10 @@ func Get(id int64) *User {
 	return user
 }
 func GetUserList() *[]User {
-	db := database.GetDb()
+	db := database.Db
 	users := []User{}
 	if err := db.Find(&users).Error; err != nil {
-		fmt.Errorf("get user list fail")
+		_ = fmt.Errorf("get user list fail")
 	}
 	return &users
 }
