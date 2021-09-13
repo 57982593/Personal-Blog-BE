@@ -47,4 +47,8 @@ func (s *Server)DeleteUser(ctx context.Context, in *proto.DeleteUserRequest)(*pr
 	}
 	return &proto.DeleteUserRespond{Msg: "delete success"},nil
 }
+func (s *Server) UploadFileStream (ctx context.Context, stream *proto.StreamRequest) error{
+	fmt.Println("stream:", stream)
+	return nil
+}
 
