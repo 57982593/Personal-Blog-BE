@@ -1,5 +1,9 @@
 isDevelopment: true
 port: 3030
+log:
+  windowsPath:  D:\\Personal-Blog-Log\\log
+  macPath: ~\\worker\\Personal-Blog-Log\\log
+  maxCount: 30
 database:
   mysql:
     charset: utf8

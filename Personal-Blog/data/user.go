@@ -1,7 +1,6 @@
 package data
 
 import (
-	"fmt"
 	"goTestProject/Personal-Blog/initialization"
 	"time"
 )
@@ -18,7 +17,7 @@ func (User) TableName() string {
 	return "user"
 }
 
-func Create(u *User) {
+func Create(u *User)error {
 	db := initialization.Db
 	nowTime := time.Now().Unix()
 	info := &User{
@@ -28,17 +27,13 @@ func Create(u *User) {
 		UpdateAt: nowTime,
 		CreateAt: nowTime,
 	}
-	if err := db.Create(info).Error; err != nil {
-		fmt.Println("err:", err)
-	}
+	err := db.Create(info).Error
+	return err
 }
 
-func GetUser(u *User) *User {
+func GetUser(u *User) (*User, error) {
 	user := &User{}
 	db := initialization.Db
-	// TODO 报错为解决
-	if err := db.Where("UserName = ?", u.UserName).First(user); err != nil {
-		fmt.Println("err:", *err)
-	}
-	return user
+	err := db.Where("account = ?", u.Account).First(user).Error
+	return user, err
 }
