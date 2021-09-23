@@ -13,13 +13,13 @@ func a() func() int  {
 	return b
 }
 
-func main() {
-	c := a()
-	d := a()
-	c()
-	c()
-	c()
-	d()
-	d()
-	d()
-}
+//func main() {
+//	c := a()
+//	d := a()
+//	c()
+//	c()
+//	c()
+//	d()
+//	d()
+//	d()
+//}
