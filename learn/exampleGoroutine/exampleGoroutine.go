@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"time"
 )
 
@@ -12,6 +13,8 @@ func test()  {
 	}
 }
 func main() {
+	num := runtime.NumCPU()
+	fmt.Println(num)
 	go test()
 
 	for i := 1; i < 10;i++ {
