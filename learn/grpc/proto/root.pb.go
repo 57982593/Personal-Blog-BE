@@ -146,17 +146,17 @@ func (x *User) GetLastLoginAt() int64 {
 	return 0
 }
 
-type StreamPoint struct {
+type CreateUserReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name  string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Value int32  `protobuf:"varint,2,opt,name=value,proto3" json:"value,omitempty"`
+	Account  string `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 }
 
-func (x *StreamPoint) Reset() {
-	*x = StreamPoint{}
+func (x *CreateUserReq) Reset() {
+	*x = CreateUserReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_root_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -164,13 +164,13 @@ func (x *StreamPoint) Reset() {
 	}
 }
 
-func (x *StreamPoint) String() string {
+func (x *CreateUserReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StreamPoint) ProtoMessage() {}
+func (*CreateUserReq) ProtoMessage() {}
 
-func (x *StreamPoint) ProtoReflect() protoreflect.Message {
+func (x *CreateUserReq) ProtoReflect() protoreflect.Message {
 	mi := &file_root_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -182,35 +182,35 @@ func (x *StreamPoint) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StreamPoint.ProtoReflect.Descriptor instead.
-func (*StreamPoint) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserReq.ProtoReflect.Descriptor instead.
+func (*CreateUserReq) Descriptor() ([]byte, []int) {
 	return file_root_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *StreamPoint) GetName() string {
+func (x *CreateUserReq) GetAccount() string {
 	if x != nil {
-		return x.Name
+		return x.Account
 	}
 	return ""
 }
 
-func (x *StreamPoint) GetValue() int32 {
+func (x *CreateUserReq) GetPassword() string {
 	if x != nil {
-		return x.Value
+		return x.Password
 	}
-	return 0
+	return ""
 }
 
-type StreamRequest struct {
+type CreateUserRes struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pt *StreamPoint `protobuf:"bytes,1,opt,name=pt,proto3" json:"pt,omitempty"`
+	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
 }
 
-func (x *StreamRequest) Reset() {
-	*x = StreamRequest{}
+func (x *CreateUserRes) Reset() {
+	*x = CreateUserRes{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_root_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -218,13 +218,13 @@ func (x *StreamRequest) Reset() {
 	}
 }
 
-func (x *StreamRequest) String() string {
+func (x *CreateUserRes) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StreamRequest) ProtoMessage() {}
+func (*CreateUserRes) ProtoMessage() {}
 
-func (x *StreamRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateUserRes) ProtoReflect() protoreflect.Message {
 	mi := &file_root_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -236,357 +236,12 @@ func (x *StreamRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StreamRequest.ProtoReflect.Descriptor instead.
-func (*StreamRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserRes.ProtoReflect.Descriptor instead.
+func (*CreateUserRes) Descriptor() ([]byte, []int) {
 	return file_root_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *StreamRequest) GetPt() *StreamPoint {
-	if x != nil {
-		return x.Pt
-	}
-	return nil
-}
-
-type StreamResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Pt *StreamPoint `protobuf:"bytes,1,opt,name=pt,proto3" json:"pt,omitempty"`
-}
-
-func (x *StreamResponse) Reset() {
-	*x = StreamResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StreamResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StreamResponse) ProtoMessage() {}
-
-func (x *StreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StreamResponse.ProtoReflect.Descriptor instead.
-func (*StreamResponse) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *StreamResponse) GetPt() *StreamPoint {
-	if x != nil {
-		return x.Pt
-	}
-	return nil
-}
-
-type GetUserRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *GetUserRequest) Reset() {
-	*x = GetUserRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserRequest) ProtoMessage() {}
-
-func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetUserRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type GetUserReply struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-}
-
-func (x *GetUserReply) Reset() {
-	*x = GetUserReply{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserReply) ProtoMessage() {}
-
-func (x *GetUserReply) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserReply.ProtoReflect.Descriptor instead.
-func (*GetUserReply) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *GetUserReply) GetUser() string {
-	if x != nil {
-		return x.User
-	}
-	return ""
-}
-
-type GetUserListRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
-	Limit  int64 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-}
-
-func (x *GetUserListRequest) Reset() {
-	*x = GetUserListRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserListRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserListRequest) ProtoMessage() {}
-
-func (x *GetUserListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserListRequest.ProtoReflect.Descriptor instead.
-func (*GetUserListRequest) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetUserListRequest) GetOffset() int64 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-func (x *GetUserListRequest) GetLimit() int64 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type GetUserListReply struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	UserList string `protobuf:"bytes,1,opt,name=userList,proto3" json:"userList,omitempty"`
-	Total    int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-}
-
-func (x *GetUserListReply) Reset() {
-	*x = GetUserListReply{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserListReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserListReply) ProtoMessage() {}
-
-func (x *GetUserListReply) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserListReply.ProtoReflect.Descriptor instead.
-func (*GetUserListReply) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetUserListReply) GetUserList() string {
-	if x != nil {
-		return x.UserList
-	}
-	return ""
-}
-
-func (x *GetUserListReply) GetTotal() int64 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
-
-type DeleteUserRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	UserId int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-}
-
-func (x *DeleteUserRequest) Reset() {
-	*x = DeleteUserRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserRequest) ProtoMessage() {}
-
-func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *DeleteUserRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-type DeleteUserRespond struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
-}
-
-func (x *DeleteUserRespond) Reset() {
-	*x = DeleteUserRespond{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_root_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteUserRespond) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserRespond) ProtoMessage() {}
-
-func (x *DeleteUserRespond) ProtoReflect() protoreflect.Message {
-	mi := &file_root_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserRespond.ProtoReflect.Descriptor instead.
-func (*DeleteUserRespond) Descriptor() ([]byte, []int) {
-	return file_root_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *DeleteUserRespond) GetMsg() string {
+func (x *CreateUserRes) GetMsg() string {
 	if x != nil {
 		return x.Msg
 	}
@@ -613,53 +268,19 @@ var file_root_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x22,
 	0x0a, 0x0d, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x5f, 0x61, 0x74, 0x18,
 	0x0a, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6c, 0x61, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x69, 0x6e,
-	0x41, 0x74, 0x22, 0x37, 0x0a, 0x0b, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x50, 0x6f, 0x69, 0x6e,
-	0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x32, 0x0a, 0x0d, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x02,
-	0x70, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x52, 0x02, 0x70, 0x74, 0x22,
-	0x33, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x21, 0x0a, 0x02, 0x70, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e,
-	0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x50, 0x6f, 0x69, 0x6e, 0x74,
-	0x52, 0x02, 0x70, 0x74, 0x22, 0x20, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x22, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x42, 0x0a, 0x12, 0x47, 0x65,
-	0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69,
-	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22, 0x44,
-	0x0a, 0x10, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x70,
-	0x6c, 0x79, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14,
-	0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74,
-	0x6f, 0x74, 0x61, 0x6c, 0x22, 0x2c, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
-	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
-	0x49, 0x64, 0x22, 0x25, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x32, 0x84, 0x02, 0x0a, 0x04, 0x52, 0x6f,
-	0x6f, 0x74, 0x12, 0x35, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x14, 0x2e,
-	0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x0b, 0x67, 0x65, 0x74,
-	0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x18, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e,
-	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x16, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65,
-	0x72, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x40, 0x0a, 0x0a,
-	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x17, 0x2e, 0x72, 0x6f, 0x6f,
-	0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x64, 0x22, 0x00, 0x12, 0x40,
-	0x0a, 0x0f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x55, 0x6e, 0x69, 0x53, 0x74, 0x72, 0x65, 0x61,
-	0x6d, 0x12, 0x13, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x53, 0x74,
-	0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01,
-	0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x41, 0x74, 0x22, 0x45, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1a, 0x0a,
+	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x21, 0x0a, 0x0d, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73,
+	0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x32, 0x40, 0x0a, 0x04,
+	0x52, 0x6f, 0x6f, 0x74, 0x12, 0x38, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73,
+	0x65, 0x72, 0x12, 0x13, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x72, 0x6f, 0x6f, 0x74, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x22, 0x00, 0x42, 0x09,
+	0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -674,35 +295,20 @@ func file_root_proto_rawDescGZIP() []byte {
 	return file_root_proto_rawDescData
 }
 
-var file_root_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_root_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_root_proto_goTypes = []interface{}{
-	(*User)(nil),               // 0: root.User
-	(*StreamPoint)(nil),        // 1: root.StreamPoint
-	(*StreamRequest)(nil),      // 2: root.StreamRequest
-	(*StreamResponse)(nil),     // 3: root.StreamResponse
-	(*GetUserRequest)(nil),     // 4: root.GetUserRequest
-	(*GetUserReply)(nil),       // 5: root.GetUserReply
-	(*GetUserListRequest)(nil), // 6: root.GetUserListRequest
-	(*GetUserListReply)(nil),   // 7: root.GetUserListReply
-	(*DeleteUserRequest)(nil),  // 8: root.DeleteUserRequest
-	(*DeleteUserRespond)(nil),  // 9: root.DeleteUserRespond
+	(*User)(nil),          // 0: root.User
+	(*CreateUserReq)(nil), // 1: root.CreateUserReq
+	(*CreateUserRes)(nil), // 2: root.CreateUserRes
 }
 var file_root_proto_depIdxs = []int32{
-	1, // 0: root.StreamRequest.pt:type_name -> root.StreamPoint
-	1, // 1: root.StreamResponse.pt:type_name -> root.StreamPoint
-	4, // 2: root.Root.getUser:input_type -> root.GetUserRequest
-	6, // 3: root.Root.getUserList:input_type -> root.GetUserListRequest
-	8, // 4: root.Root.deleteUser:input_type -> root.DeleteUserRequest
-	2, // 5: root.Root.clientUniStream:input_type -> root.StreamRequest
-	5, // 6: root.Root.getUser:output_type -> root.GetUserReply
-	7, // 7: root.Root.getUserList:output_type -> root.GetUserListReply
-	9, // 8: root.Root.deleteUser:output_type -> root.DeleteUserRespond
-	3, // 9: root.Root.clientUniStream:output_type -> root.StreamResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: root.Root.createUser:input_type -> root.CreateUserReq
+	2, // 1: root.Root.createUser:output_type -> root.CreateUserRes
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_root_proto_init() }
@@ -724,7 +330,7 @@ func file_root_proto_init() {
 			}
 		}
 		file_root_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StreamPoint); i {
+			switch v := v.(*CreateUserReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -736,91 +342,7 @@ func file_root_proto_init() {
 			}
 		}
 		file_root_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StreamRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StreamResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserReply); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserListRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserListReply); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteUserRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_root_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteUserRespond); i {
+			switch v := v.(*CreateUserRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -838,7 +360,7 @@ func file_root_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_root_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -864,10 +386,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RootClient interface {
-	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserReply, error)
-	GetUserList(ctx context.Context, in *GetUserListRequest, opts ...grpc.CallOption) (*GetUserListReply, error)
-	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserRespond, error)
-	ClientUniStream(ctx context.Context, opts ...grpc.CallOption) (Root_ClientUniStreamClient, error)
+	CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*CreateUserRes, error)
 }
 
 type rootClient struct {
@@ -878,174 +397,48 @@ func NewRootClient(cc grpc.ClientConnInterface) RootClient {
 	return &rootClient{cc}
 }
 
-func (c *rootClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserReply, error) {
-	out := new(GetUserReply)
-	err := c.cc.Invoke(ctx, "/root.Root/getUser", in, out, opts...)
+func (c *rootClient) CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*CreateUserRes, error) {
+	out := new(CreateUserRes)
+	err := c.cc.Invoke(ctx, "/root.Root/createUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
-}
-
-func (c *rootClient) GetUserList(ctx context.Context, in *GetUserListRequest, opts ...grpc.CallOption) (*GetUserListReply, error) {
-	out := new(GetUserListReply)
-	err := c.cc.Invoke(ctx, "/root.Root/getUserList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *rootClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserRespond, error) {
-	out := new(DeleteUserRespond)
-	err := c.cc.Invoke(ctx, "/root.Root/deleteUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *rootClient) ClientUniStream(ctx context.Context, opts ...grpc.CallOption) (Root_ClientUniStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Root_serviceDesc.Streams[0], "/root.Root/clientUniStream", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &rootClientUniStreamClient{stream}
-	return x, nil
-}
-
-type Root_ClientUniStreamClient interface {
-	Send(*StreamRequest) error
-	CloseAndRecv() (*StreamResponse, error)
-	grpc.ClientStream
-}
-
-type rootClientUniStreamClient struct {
-	grpc.ClientStream
-}
-
-func (x *rootClientUniStreamClient) Send(m *StreamRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *rootClientUniStreamClient) CloseAndRecv() (*StreamResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(StreamResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 // RootServer is the server API for Root service.
 type RootServer interface {
-	GetUser(context.Context, *GetUserRequest) (*GetUserReply, error)
-	GetUserList(context.Context, *GetUserListRequest) (*GetUserListReply, error)
-	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserRespond, error)
-	ClientUniStream(Root_ClientUniStreamServer) error
+	CreateUser(context.Context, *CreateUserReq) (*CreateUserRes, error)
 }
 
 // UnimplementedRootServer can be embedded to have forward compatible implementations.
 type UnimplementedRootServer struct {
 }
 
-func (*UnimplementedRootServer) GetUser(context.Context, *GetUserRequest) (*GetUserReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
-}
-func (*UnimplementedRootServer) GetUserList(context.Context, *GetUserListRequest) (*GetUserListReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserList not implemented")
-}
-func (*UnimplementedRootServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserRespond, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
-}
-func (*UnimplementedRootServer) ClientUniStream(Root_ClientUniStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method ClientUniStream not implemented")
+func (*UnimplementedRootServer) CreateUser(context.Context, *CreateUserReq) (*CreateUserRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
 
 func RegisterRootServer(s *grpc.Server, srv RootServer) {
 	s.RegisterService(&_Root_serviceDesc, srv)
 }
 
-func _Root_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserRequest)
+func _Root_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RootServer).GetUser(ctx, in)
+		return srv.(RootServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/root.Root/GetUser",
+		FullMethod: "/root.Root/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RootServer).GetUser(ctx, req.(*GetUserRequest))
+		return srv.(RootServer).CreateUser(ctx, req.(*CreateUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
-}
-
-func _Root_GetUserList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RootServer).GetUserList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/root.Root/GetUserList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RootServer).GetUserList(ctx, req.(*GetUserListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Root_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RootServer).DeleteUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/root.Root/DeleteUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RootServer).DeleteUser(ctx, req.(*DeleteUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Root_ClientUniStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RootServer).ClientUniStream(&rootClientUniStreamServer{stream})
-}
-
-type Root_ClientUniStreamServer interface {
-	SendAndClose(*StreamResponse) error
-	Recv() (*StreamRequest, error)
-	grpc.ServerStream
-}
-
-type rootClientUniStreamServer struct {
-	grpc.ServerStream
-}
-
-func (x *rootClientUniStreamServer) SendAndClose(m *StreamResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *rootClientUniStreamServer) Recv() (*StreamRequest, error) {
-	m := new(StreamRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 var _Root_serviceDesc = grpc.ServiceDesc{
@@ -1053,24 +446,10 @@ var _Root_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RootServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "getUser",
-			Handler:    _Root_GetUser_Handler,
-		},
-		{
-			MethodName: "getUserList",
-			Handler:    _Root_GetUserList_Handler,
-		},
-		{
-			MethodName: "deleteUser",
-			Handler:    _Root_DeleteUser_Handler,
+			MethodName: "createUser",
+			Handler:    _Root_CreateUser_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "clientUniStream",
-			Handler:       _Root_ClientUniStream_Handler,
-			ClientStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "root.proto",
 }

@@ -21,38 +21,12 @@ message User {
 }
 
 service Root {
-  rpc getUser (GetUserRequest) returns (GetUserReply) {}
-  rpc getUserList (GetUserListRequest) returns (GetUserListReply) {}
-  rpc deleteUser (DeleteUserRequest) returns (DeleteUserRespond) {}
-  rpc clientUniStream(stream StreamRequest) returns (StreamResponse) {};
+  rpc createUser (CreateUserReq) returns (CreateUserRes) {}
 }
-message StreamPoint {
-  string name = 1;
-  int32  value = 2;
+message CreateUserReq {
+  string account = 1;
+  string password = 2;
 }
-message StreamRequest {
-  StreamPoint pt = 1;
-}
-message StreamResponse {
-  StreamPoint pt = 1;
-};
-message GetUserRequest {
-  int64 id = 1;
-}
-message GetUserReply {
-  string user = 1;
-}
-message GetUserListRequest {
-  int64 offset = 1;
-  int64 limit = 2;
-}
-message GetUserListReply {
-  string userList = 1;
-  int64 total = 2;
-}
-message DeleteUserRequest {
-  int64 user_id = 1;
-}
-message DeleteUserRespond {
+message CreateUserRes {
   string msg = 1;
 }

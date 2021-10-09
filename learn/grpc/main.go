@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	database "goTestProject/Personal-Blog/initialization"
+	"goTestProject/Personal-Blog/initialization"
 	"goTestProject/learn/grpc/controller"
 	"goTestProject/learn/grpc/proto"
 	"io/ioutil"
@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-	config := "./config/dev.yaml"
+	config := "D:/Personal-Blog-BE/dev.yaml"
 	viper.SetConfigFile(config)
 
 	content, err := ioutil.ReadFile(config)
@@ -31,7 +31,7 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Parse config file fail: %s", err.Error()))
 	}
-	database.InitDatabase()
+	initialization.Mysql()
 	port := viper.Get("port")
 	fmt.Println("Service started Successfully!")
 	s := grpc.NewServer()
