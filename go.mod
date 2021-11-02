@@ -12,6 +12,7 @@ require (
 	github.com/improbable-eng/grpc-web v0.14.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/json-iterator/go v1.1.11 // indirect
+	github.com/jung-kurt/gofpdf v1.16.2
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/lestrrat-go/strftime v1.0.5 // indirect

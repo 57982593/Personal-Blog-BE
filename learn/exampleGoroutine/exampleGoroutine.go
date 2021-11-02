@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"time"
 )
 
@@ -12,15 +11,16 @@ func test()  {
 		time.Sleep(time.Second)
 	}
 }
-func main() {
-	num := runtime.NumCPU()
-	fmt.Println(num)
-	go test()
 
-	for i := 1; i < 10;i++ {
-		fmt.Println("main():",i)
-		time.Sleep(time.Second)
-	}
+//func main() {
+//	num := runtime.NumCPU()
+//	fmt.Println(num)
+//	go test()
+//
+//	for i := 1; i < 10;i++ {
+//		fmt.Println("main():",i)
+//		time.Sleep(time.Second)
+//	}
 	//main(): 1
 	//test(): 1
 	//test(): 2
@@ -40,4 +40,17 @@ func main() {
 	//main(): 9
 	//test(): 9
 
+//}
+
+func Hello(ch chan int)  {
+	fmt.Println("hello everybody , I'm asong")
+	ch <- 1
+}
+
+func main()  {
+	ch := make(chan int)
+	go Hello(ch)
+	test := <-ch
+	fmt.Println(test)
+	fmt.Println("Golang梦工厂")
 }
