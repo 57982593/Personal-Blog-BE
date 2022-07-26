@@ -2,9 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/rs/zerolog"
-	"github.com/spf13/viper"
-	"goTestProject/Personal-Blog/initialization"
 	"goTestProject/Personal-Blog/log"
 	"goTestProject/Personal-Blog/router"
 	"io/ioutil"
@@ -12,13 +9,16 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rs/zerolog"
+	"github.com/spf13/viper"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	zerolog.SetGlobalLevel(zerolog.Level(0))
-	configFilePath := "./dev.yaml"
+	configFilePath := "D:/Personal-Blog-BE/dev.yaml"
 	viper.SetConfigFile(configFilePath)
 	content, err := ioutil.ReadFile(configFilePath)
 	if err != nil {
@@ -28,9 +28,9 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Parse config file fail: %s", err.Error()))
 	}
-	port := fmt.Sprint(":",viper.Get("port"))
+	port := fmt.Sprint(":", viper.Get("port"))
 	log.Log()
-	initialization.Mysql()
+	// initialization.Mysql()
 	engine := gin.Default()
 	engine.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
