@@ -21,8 +21,7 @@ require (
 	github.com/rs/zerolog v1.25.0
 	github.com/spf13/viper v1.7.1
 	github.com/ugorji/go v1.2.5 // indirect
-	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
-	golang.org/x/text v0.3.6 // indirect
+	github.com/xuri/excelize/v2 v2.7.1 // indirect
 	google.golang.org/grpc v1.38.0
 	google.golang.org/protobuf v1.26.0
 	gopkg.in/yaml.v2 v2.4.0 // indirect
